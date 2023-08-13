@@ -23,10 +23,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/gameplay-index.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
 </head>
 <body class="body">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+
+
 
 
 
@@ -86,11 +91,33 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 </div>
 </nav>
 
+
 <main>
     @yield('content')
 </main>
 </div>
 @yield('script')
-</body>
+<script>
+    @if (Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+  @endif
+  @if (Session::has('info'))
+        toastr.info("{{ Session::get('info') }}");
+  @endif
+  @if (Session::has('warning'))
+        toastr.warning("{{ Session::get('warning') }}");
+  @endif
+  @if (Session::has('error'))
+            @if ($errors)
+            var str = ``;
+                @foreach ($errors->all() as $error)
+                str +=  `<p>{{ $error }}</p>`; @endforeach
+                toastr.error(str);
+@else
+toastr.error("{{ Session::get('error') }}");
+        @endif
+    @endif
+    </script>
+    </body>
 
 </html>

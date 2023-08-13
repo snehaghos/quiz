@@ -45,6 +45,8 @@
                                 <div class="ms-2" >A</div>
                             </div>
                             <input type="text" class="form-control" name="option_a" placeholder="Option a" value="{{ $question->option_a }}">
+                            <input type="file" name="option_a_img" class="form-control" id="">
+
                         </div>
                     </div>
                 </div>
@@ -57,6 +59,8 @@
                                 <div class="ms-2" name="option_b">B</div>
                             </div>
                             <input type="text" class="form-control" name="option_b" placeholder="Option b" value="{{ $question->option_b }}">
+                            <input type="file" name="option_b_img" class="form-control" id="">
+
                         </div>
 
                     </div>
@@ -69,6 +73,8 @@
                                 <div class="ms-2">C</div>
                             </div>
                             <input type="text" class="form-control" name="option_c" placeholder="Option c" value="{{ $question->option_c }}">
+                            <input type="file" name="option_c_img" class="form-control" id="">
+
                         </div>
                     </div>
                 </div>
@@ -81,6 +87,8 @@
                                 <div class="ms-2">D</div>
                             </div>
                             <input type="text" class="form-control" name="option_d" placeholder="Option d" value="{{ $question->option_d }}">
+                            <input type="file" name="option_d_img" class="form-control" id="">
+
                         </div>
                     </div>
                 </div>

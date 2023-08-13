@@ -45,6 +45,7 @@
                                 <div class="ms-2" >A</div>
                             </div>
                             <input type="text" class="form-control" name="option_a" placeholder="Option a">
+                            <input type="file" name="option_a_img" class="form-control" id="">
                         </div>
                     </div>
                 </div>
@@ -52,11 +53,14 @@
                     <div class="form-group mb-3 border border-info rounded-2">
 
                         <div class="input-group">
+
                             <div class="input-group-text d-flex bg-info"> <input class="form-check-input" type="radio"
                                     name="answer" id="gridRadios1" value="option_b"  checked>
                                 <div class="ms-2" name="option_b">B</div>
                             </div>
                             <input type="text" class="form-control" name="option_b" placeholder="Option b">
+                            <input type="file" name="option_b_img" class="form-control" id="">
+
                         </div>
 
                     </div>
@@ -69,6 +73,8 @@
                                 <div class="ms-2">C</div>
                             </div>
                             <input type="text" class="form-control" name="option_c" placeholder="Option c">
+                            <input type="file" name="option_c_img" class="form-control" id="">
+
                         </div>
                     </div>
                 </div>
@@ -81,6 +87,8 @@
                                 <div class="ms-2">D</div>
                             </div>
                             <input type="text" class="form-control" name="option_d" placeholder="Option d">
+                            <input type="file" name="option_d_img" class="form-control" id="">
+
                         </div>
                     </div>
                 </div>

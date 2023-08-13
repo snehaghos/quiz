@@ -7,7 +7,7 @@
                 Create Subject
             </div>
         </a>
-        <table class="table ">
+        <table class="table border-dark table-responsive">
             <tr >
                 <th >Sl</th>
                 <th>Subject Name</th>

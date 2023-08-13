@@ -34,38 +34,38 @@
             <h4 class="text-center">
                 Correct answer {{ $right_answer }} out of {{ $total_answer }}
             </h4>
-            <h4 class="text-center text-info fx-bold">
+            <div class="text-center text-info fx-bold">
                 @if($right_answer==0)
-                    <h2>Very bad</h2>
+                    <h2 class="text-center">Very bad</h2>
                     <div style="font-size:65px; ">☹️</div>
 
                 @elseif($right_answer==1)
-                    Better Luck Next Time
+                <h2 class="text-center">Better Luck Next Time</h2>
                     <div style="font-size:65px; ">🙂</div>
 
                 @elseif($right_answer==2)
-                    Not Bad
+                    <h2 class="text-center"> Not Bad</h2>
                     <div style="font-size:65px; ">😃</div>
 
                 @elseif($right_answer==3)
-                    <h2>Good</h2>
+                    <h2 class="text-center">Good</h2>
                     <div style="font-size:65px; ">🥰</div>
                 @elseif($right_answer==4)
-                    <h3>Very Good</h3>
+                    <h3 class="text-center">Very Good</h3>
                     <div style="font-size:65px; ">🥳</div>
 
                 @else
-                    <h2>Outstanding</h2>
+                    <h2 class="text-center">Outstanding</h2>
                     <div style="font-size:65px; ">🤩</div>
 
                 @endif
-            </h4>
+            </div>
             {{-- <div class="mx-auto">
             <img src="/images/gameover.png" width="150" height="150" alt="" >
         </div> --}}
             <div class="row mt-5">
                 <div class="col-md-4">
-                    <a href="" class="btn btn-success w-100">Try Again</a>
+                    <a href="{{ route('start_quiz') }}" class="btn btn-success w-100">Try Again</a>
                 </div>
                 <div class="col-md-4">
                     <a href="{{ route('home') }}" class="btn btn-success w-100 ">Back</a>

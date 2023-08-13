@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('option_d');
             $table->string('answer');
             $table->string('image');
+            $table->string('option_a_img');
+            $table->string('option_b_img');
+            $table->string('option_c_img');
+            $table->string('option_d_img');
+
             $table->bigInteger('subject_id');
             $table->timestamps();
         });

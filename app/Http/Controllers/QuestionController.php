@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
@@ -49,17 +50,70 @@ class QuestionController extends Controller
     {
         // dd($request->all());
         //dd($request->except('_token'));
+        $validator = Validator::make($request->all(),[
+            'question' => 'required',
+            'option_a' => 'required',
+            'option_b' => 'required',
+            'option_c' => 'required',
+            'option_d' => 'required',
+            'answer' => 'required'
+
+        ],[
+            'question.required' => 'You need to write Question',
+            'option_a' => 'You need to fill "Option A"'
+        ] );
+        if($validator->fails())
+        {
+
+            return redirect()->back()->withErrors($validator)->withInput()->with('error',$validator->getMessageBag());
+        }
+
         if ($request->file('image')) {
             $file = $request->file('image');
-            // @unlink(public_path('upload/student_images/'.$data->image));
             $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('upload/question_image'), $filename);
             $question['image'] = $filename;
         }
+        if ($request->file('option_a_img')) {
+            $file = $request->file('option_a_img');
+            //dd($request->file('option_a_img'));
+             //@unlink(public_path('upload/option_img/'.$data->option_a_img));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_a_img'] = $filename;
+        }
+        // if ($request->file('option_a_img')) {
+        //     $file = $request->file('option_a_img');
+        //     //dd($request->file('option_a_img'));
+        //     $filename = date('YmdHi') . $file->getClientOriginalName();
+        //     $file->move(public_path('upload/option_img'), $filename);
+        //     $question['option_a_img'] = $filename;
+        // }
+        if ($request->file('option_b_img')) {
+            $file = $request->file('option_b_img');
+            //dd($request->file('option_b_img'));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_b_img'] = $filename;
+        }
+          if ($request->file('option_c_img')) {
+            $file = $request->file('option_c_img');
+            //dd($request->file('option_c_img'));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_c_img'] = $filename;
+        }
+          if ($request->file('option_d_img')) {
+            $file = $request->file('option_d_img');
+            //dd($request->file('option_d_img'));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_d_img'] = $filename;
+        }
         $input=$request->except('_token');
     //    dd($input);
        $question= Question::create($input);
-       return redirect()->route('question.index');
+       return redirect()->route('question.index')->with('success','Question has been created successfully');
 
     }
 
@@ -107,6 +161,37 @@ class QuestionController extends Controller
             //dd($filename);
             $file->move(public_path('upload/question_image'), $filename);
             $question['image'] = $filename;
+        }
+        if ($request->file('option_a_img')) {
+            $file = $request->file('option_a_img');
+            //dd($request->file('option_a_img'));
+             @unlink(public_path('upload/option_img/'.$data->option_a_img));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_a_img'] = $filename;
+        }
+        if ($request->file('option_b_img')) {
+            $file = $request->file('option_b_img');
+
+            @unlink(public_path('upload/option_img/'.$data->option_b_img));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_b_img'] = $filename;
+        }
+          if ($request->file('option_c_img')) {
+            $file = $request->file('option_c_img');
+
+            @unlink(public_path('upload/option_img/'.$data->option_c_img));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_c_img'] = $filename;
+        }  if ($request->file('option_d_img')) {
+            $file = $request->file('option_d_img');
+
+            @unlink(public_path('upload/option_img/'.$data->option_d_img));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/option_img'), $filename);
+            $question['option_d_img'] = $filename;
         }
         $question->subject_id=$request->subject_id;
         $question->save();
