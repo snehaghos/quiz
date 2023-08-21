@@ -67,6 +67,14 @@ class QuestionController extends Controller
 
             return redirect()->back()->withErrors($validator)->withInput()->with('error',$validator->getMessageBag());
         }
+        $question=new Question;
+        $question->question=$request->question;
+        $question->option_a=$request->option_a;
+        $question->option_b=$request->option_b;
+        $question->option_c=$request->option_c;
+        $question->option_d=$request->option_d;
+        $question->answer=$request->answer;
+
 
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -82,13 +90,6 @@ class QuestionController extends Controller
             $file->move(public_path('upload/option_img'), $filename);
             $question['option_a_img'] = $filename;
         }
-        // if ($request->file('option_a_img')) {
-        //     $file = $request->file('option_a_img');
-        //     //dd($request->file('option_a_img'));
-        //     $filename = date('YmdHi') . $file->getClientOriginalName();
-        //     $file->move(public_path('upload/option_img'), $filename);
-        //     $question['option_a_img'] = $filename;
-        // }
         if ($request->file('option_b_img')) {
             $file = $request->file('option_b_img');
             //dd($request->file('option_b_img'));
@@ -102,6 +103,7 @@ class QuestionController extends Controller
             $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('upload/option_img'), $filename);
             $question['option_c_img'] = $filename;
+            //dd( $question['option_c_img']);
         }
           if ($request->file('option_d_img')) {
             $file = $request->file('option_d_img');
@@ -110,9 +112,12 @@ class QuestionController extends Controller
             $file->move(public_path('upload/option_img'), $filename);
             $question['option_d_img'] = $filename;
         }
-        $input=$request->except('_token');
-    //    dd($input);
-       $question= Question::create($input);
+        //dd($question);
+        $question->save();
+       // $input=$request->except('_token');
+       //dd($input);
+    //    $question= Question::create($input);
+      // dd($question);
        return redirect()->route('question.index')->with('success','Question has been created successfully');
 
     }
@@ -142,7 +147,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+         //dd($request->all());
         $question=Question::find($id);
         $question->question=$request->question;
         $question->option_a=$request->option_a;
